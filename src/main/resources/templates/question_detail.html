@@ -24,7 +24,6 @@
             <div class="right-space"></div>
         </div>
         <div class="content">
-            <!--        질문 card 시작-->
             <div class="question-box">
                 <h2 class="title-text" th:text="${question.subject}"></h2>
                 <div class="q-card">
@@ -35,9 +34,7 @@
                 </div>
             </div>
             <div class="answer-box">
-                <!--답변의 갯수를 의미-->
                 <h5 class="title-text2" th:text="|${#lists.size(question.answerList)}개의 답변|"></h5>
-                <!-- 답변 반복 시작 -->
                 <div class="a-card" th:each="answer : ${question.answerList}">
                     <div class="a-card-body">
                         <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
@@ -48,16 +45,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- 답변 반복 끝  -->
             </div>
         </div>
-        <!-- 답변 작성 -->
         <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3 answer-form">
             <div th:replace="~{form_errors :: formErrorsFragment}"></div>
             <textarea th:field="*{content}" rows="5" class="form-control" placeholder="  답변을 남겨보세요."></textarea>
             <input type="submit" value="답변등록" class="btn btn-primary my-2 answer-button">
         </form>
-
     </div>
 </div>
 <script th:src="@{/bootstrap.min.js}"></script>
